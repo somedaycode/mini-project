@@ -1,0 +1,115 @@
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  background: black;
+}
+
+body {
+  background-size: cover;
+  background-position: center center;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  background: none;
+  appearance: none;
+  border: 0;
+  font-size: 2.5rem;
+  color: white;
+  border-bottom: 2px solid white;
+}
+input:focus {
+  outline: none;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 1rem;
+}
+
+li {
+  font-size: 1.2rem;
+  padding-bottom: 0.5rem;
+}
+
+#main-background {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.clicked {
+  color: #7f8c8d;
+}
+
+.js-clock h1 {
+  font-size: 4rem;
+  flex-direction: column;
+  color: #ffffff;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.form,
+.greeting {
+  display: none;
+}
+
+.showing {
+  display: block;
+  font-size: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.js-toDoForm {
+  display: block;
+  margin-top: 0;
+}
+.js-toDoForm ::placeholder {
+  color: white;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.bgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.js-weather {
+  transition: opacity 0.5s ease-in;
+  font-style: italic;
+  font-size: 1.8rem;
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+}
