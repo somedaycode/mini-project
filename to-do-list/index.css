@@ -79,6 +79,10 @@ li {
   margin-bottom: 1.5rem;
 }
 
+.showing ::placeholder {
+  color: white;
+}
+
 .js-toDoForm {
   display: block;
   margin-top: 0;
