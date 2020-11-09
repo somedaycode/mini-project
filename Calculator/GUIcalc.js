@@ -1,22 +1,40 @@
-const isDisplayResult = document.querySelector('.btn-equal');
 const btnContainer = document.querySelector('.btn-contain');
 const displayEx = document.querySelector('.ex');
-let exResult = [];
+const resultBtn = document.querySelector('.display-result');
+let result = [];
 
+// 숫자 버튼을 클릭하면 숫자를 디스플레이에 표시해줌.
 function getValue(e) {
   const clickedValue = e.target.value;
-  if (clickedValue !== undefined) {
-    exResult.push(clickedValue);
-    displayEx.innerText = Number(exResult.join(''));
+  if (clickedValue === `=`) {
+    equalClicked();
+  } else if (clickedValue === 'C') {
+    displayClear();
+  } else {
+    result.push(clickedValue);
+    displayEx.innerText = result.join('');
   }
 }
 
-const btnClicked = () => {
+// 화면 클리어
+function displayClear() {
+  displayEx.innerText = `0`;
+  resultBtn.innerText = `0`;
+  result = [];
+}
+
+// 결과값
+function equalClicked() {
+  const finalResult = eval([...result].join(''));
+  resultBtn.innerHTML = finalResult;
+}
+
+function eventHandler() {
   btnContainer.addEventListener('click', getValue);
-};
+}
 
 function init() {
-  btnClicked();
+  eventHandler();
 }
 
 init();
