@@ -13,6 +13,7 @@
         margin: 5px;
       }
     </style>
+    <script src="word.js" defer></script>
   </head>
   <body>
     <h1>단어 움직이기 퍼즐</h1>
@@ -21,22 +22,10 @@
       <div id="word2"></div>
       <div id="butns">
         <button onclick="swap(event)">뒤집기</button>
-        <button onclick="shift(event)">밀어내기</button>
+        <button onclick="rShift(event)">오른쪽 밀어내기</button>
+        <button onclick="lShift(event)">왼쪽 밀어내기</button>
       </div>
       <p id="check">일치합니다.</p>
     </div>
-    <script>
-      const str = document.querySelector('#word1').textContent;
-      const word2 = document.querySelector('#word2');
-
-      for (let i = 0; i < str.length; i++) {
-        var btn = document.createElement('button');
-        btn.innerHTML = str[i];
-        word2.appendChild(btn);
-      }
-
-      const swap = (e) => console.log('swap');
-      const shift = (e) => console.log('shift');
-    </script>
   </body>
 </html>
