@@ -1,0 +1,77 @@
+:root {
+    /* color */
+    --color-light-grey: #ced6e0;
+    --color-blue: #3b88c3;
+    --color-white: #ffffff;
+    --color-btn: #f1f2f6;
+
+    /* size */
+    --font-size: 1rem;
+    --btn-font-size: 1.5rem;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.container {
+    height: 21.5rem;
+    width: 17.8rem;
+    background-color: var(--color-light-grey);
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.display {
+    height: 3rem;
+    width: 15rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+}
+
+.ex,
+.display-result {
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+}
+
+.display-result {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.display .title {
+    font-size: 0.8rem;
+}
+.display .ex {
+    background-color: rgba(161, 161, 161, 0.137);
+}
+
+.btn-contain {
+    margin: 0.4rem;
+    padding: 0.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-items: center;
+}
+
+.btn {
+    height: 3.5rem;
+    width: 3.5rem;
+    margin: 0.25rem;
+    background-color: var(--color-btn);
+    position: relative;
+    font-size: var(--btn-font-size);
+    border-style: none;
+}
+
+.btn-equal{
+    background-color: var(--color-blue);
+}
