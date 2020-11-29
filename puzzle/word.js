@@ -1,80 +1,153 @@
-let str = document.querySelector('#word1').textContent;
-const word2 = document.querySelector('#word2');
+//html elements
+var word1 = document.getElementById('word1'); //answer
+var word2 = document.getElementById('word2'); //buttons
+var check = document.getElementById('check'); //word1 === word2?
+var progress = document.getElementById('progress'); //progress check
+var time = document.getElementById('time');
 
-const game = {};
-game.list = [
-  'apple',
-  'banana',
-  'house',
-  'color',
-  'puzzle',
-  'baby',
-  'origin',
-  'everyday',
-  'Enlgish',
-  'candy',
-];
-game.copyBtnText = () => {
-  for (let i = 0; i < game.word.length; i++) {
-    game.btns[i].innerHTML = game.word[i];
-  }
+//game objects
+var game = {
+  btns: [],
+  maxPlay: 3,
+  current: 0,
 };
 
-function createBtn() {
-  for (let i = 0; i < str.length; i++) {
+game.startTime = Date.now();
+
+game.words = 'apple,linux,javascript,tutorial,codesquad,baby,girlfriend,legend'.split(
+  ','
+);
+
+//choose 1 word from words;
+game.choose = function () {
+  var idx = Math.floor(Math.random() * this.words.length);
+  this.answer = this.words[idx];
+  this.letters = this.answer.split('');
+  word1.innerHTML = this.answer;
+};
+
+game.addButtons = function () {
+  for (var i = 0; i < this.letters.length; i++) {
     var btn = document.createElement('button');
-    btn.innerHTML = str[i];
+    btn.innerHTML = this.letters[i];
     word2.appendChild(btn);
-    game.btns.push(btn);
-  }
-}
-
-const removeChilde = (word2) => {
-  while (word2.hasChildNodes()) {
-    word2.removeChild(word2.lastChild);
+    this.btns.push(btn);
   }
 };
 
-// 버튼 기능들
-const selectWords = (e) => {
-  game.btns = [];
-  game.word = str.split('');
-  removeChilde(word2);
-  const ranNum = Math.floor(Math.random() * 9);
-  const newWord = game.list[ranNum].toUpperCase();
-  document.querySelector('#word1').textContent = newWord;
-  str = newWord;
-  game.word = str.split('');
-  createBtn();
-  game.copyBtnText();
+game.removeButtons = function () {
+  for (var i = 0; i < this.btns.length; i++) {
+    word2.removeChild(this.btns[i]);
+  }
+  this.btns = [];
 };
 
-const swap = (e) => {
-  game.word.reverse();
-  game.copyBtnText();
-  resultCheck();
+game.checkGood = function () {
+  return this.answer === this.letters.join('');
 };
 
-const rShift = (e) => {
-  const s = game.word.pop();
-  game.word.unshift(s);
-  game.copyBtnText();
-  resultCheck();
-};
-
-const lShift = (e) => {
-  const s = game.word.shift();
-  game.word.push(s);
-  game.copyBtnText();
-  resultCheck();
-};
-
-// 결과값 확인
-const resultCheck = () => {
-  const result = document.querySelector('#check');
-  if (game.word.join('') !== str) {
-    result.textContent = '일치하지 않습니다.';
-  } else if (game.word.join('') === str) {
-    result.textContent = '일치합니다.';
+game.updateDisplay = function () {
+  if (this.checkGood()) {
+    check.innerHTML = '일치합니다';
+  } else {
+    check.innerHTML = '일치하지 않습니다';
   }
 };
+
+game.init = function () {
+  this.choose();
+  this.addButtons();
+  this.updateDisplay();
+};
+game.init();
+
+game.copyBtnText = function () {
+  for (var i = 0; i < this.letters.length; i++) {
+    this.btns[i].innerHTML = this.letters[i];
+  }
+};
+
+game.swap = function () {
+  var temp = [];
+  //copy and swap
+  while (game.letters.length != 0) {
+    var s = game.letters.pop();
+    temp.push(s);
+  }
+  game.letters = temp;
+  game.copyBtnText();
+  game.updateDisplay();
+};
+
+game.rshift = function () {
+  var s = game.letters.pop();
+  game.letters.unshift(s);
+  game.copyBtnText();
+  game.updateDisplay();
+};
+
+game.lshift = function () {
+  var s = game.letters.shift();
+  game.letters.push(s);
+  game.copyBtnText();
+  game.updateDisplay();
+};
+
+game.progress = function () {
+  if (game.checkGood()) {
+    game.current++;
+    game.removeButtons();
+    game.init();
+    game.shuffle();
+    var str = '';
+    for (var i = 0; i < game.current; i++) {
+      str += 'O';
+    }
+    progress.innerHTML = str;
+  }
+
+  if (game.current == game.maxPlay) {
+    var sec = (Date.now() - game.startTime) / 1000;
+    alert('Good! Your Record: ' + sec + ' sec');
+    clearInterval(x);
+    check.innerHTML = 'Thanks for playing';
+  }
+};
+
+//event hadler for swap button
+var swap = function () {
+  game.swap();
+  game.progress();
+};
+
+var rshift = function () {
+  game.rshift();
+  game.progress();
+};
+
+var lshift = function () {
+  game.lshift();
+  game.progress();
+};
+
+//shuffle
+game.shuffle = function () {
+  var toggle = Math.floor(Math.random() * 2) === 0;
+  if (toggle) {
+    game.swap();
+  }
+
+  var rmax = Math.max(game.answer.length - 2, 1);
+  var n = Math.floor(Math.random() * rmax) + 1;
+  for (var i = 0; i < n; i++) {
+    game.rshift();
+  }
+};
+game.shuffle();
+
+var updateTime = function () {
+  var now = Date.now() - game.startTime;
+  time.innerHTML = now / 1000 + ' s';
+};
+
+var x = setInterval(updateTime, 50);

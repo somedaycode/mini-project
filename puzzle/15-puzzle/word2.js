@@ -4,19 +4,22 @@ let word1 = document.querySelector('#word1');
 const word2 = document.querySelector('#word2');
 const correct = document.querySelector('.correct');
 const progress = document.querySelector('.time');
+const ranking = document.querySelector('.rank');
 
 //game object
 const game = {
   // startTime을 지정함으로서 시작시간 저장
   startTime: new Date(),
-  clock: setInterval(currentTime, 250), //
+  clock: setInterval(currentTime, 50), //
   words: 'apple,linux,javascript,tutorial,legend,man,woman'.split(','),
   btns: [],
   count: 0,
   correction: [],
+  rank: [],
 
   // add btns
   addBtns() {
+    this.btns = [];
     for (let i = 0; i < str.length; i++) {
       var btn = document.createElement('button');
       btn.innerHTML = str[i];
@@ -37,14 +40,23 @@ const game = {
       result.textContent = '일치하지 않습니다.';
     } else if (this.word.join('') === str) {
       result.textContent = '일치합니다.';
-      this.count++;
-      this.correction.push('O');
-      correct.textContent = this.correction.join('');
+      word2.textContent = '';
+      this.countUp();
+      init();
       if (this.count === 3) {
         this.finishGame();
         clearInterval(this.clock);
+        game.clock = false;
+        const name = prompt('이름 입력');
+        const score = progress.textContent;
+        const showRank = `${name}: ${score}`;
+        game.rank.push(showRank);
       }
     }
+  },
+  countUp() {
+    this.count++;
+    this.correction.push('O');
   },
   copyBtnText() {
     for (let i = 0; i < this.word.length; i++) {
@@ -77,6 +89,12 @@ const lShift = (e) => {
   game.resultCheck();
 };
 
+// show ranking
+
+const showRank = (e) => {
+  ranking.innerHTML = `${game.rank}`;
+};
+
 //Shuffle words
 const shuffle = () => {
   const toggle = Math.floor(Math.random() * 2) === 0;
@@ -95,8 +113,29 @@ function currentTime() {
   const currentT = (seconds - game.startTime) / 1000;
   progress.textContent = currentT;
 }
+// 시간 되돌리기
+function clockRewind() {
+  if (!game.clock) {
+    setInterval(currentTime, 50);
+    game.clock = true;
+  }
+}
 
 function init() {
+  game.choice();
+  game.word = str.split('');
+  game.addBtns();
+  shuffle();
+  correct.textContent = game.correction.join('');
+}
+
+function init2() {
+  correct.textContent = '';
+  clockRewind();
+  game.startTime = new Date();
+  game.count = 0;
+  game.correction = [];
+  word2.textContent = '';
   game.choice();
   game.word = str.split('');
   game.addBtns();
