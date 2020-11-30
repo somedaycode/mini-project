@@ -19,10 +19,53 @@ function computerNumber() {
 
   return n;
 }
+function ballCount(U, C) {
+  let ball = 0;
+  for (let i = 0; i < C.length; i++) {
+    if (U.includes(C[i])) {
+      ball++;
+    }
+  }
+  return ball;
+}
+
+function strikeCount(U, C) {
+  let strike = 0;
+  let ball = 0;
+  for (let i = 0; i < C.length; i++) {
+    if (U[i] === C[i]) {
+      strike++, ball--;
+    }
+  }
+  return [strike, ball];
+}
 
 function init() {
-  console.log(computerNumber());
-  console.log(userNumber());
+  const Cnum = computerNumber();
+  let strike = 0;
+  while (strike !== 3) {
+    strike = 0;
+    let ball = 0;
+    let Unum = userNumber();
+    console.log(`사용자의 숫자: ${Unum.join('')}`);
+    ball = ballCount(Unum, Cnum) + strikeCount(Unum, Cnum)[1];
+    strike = strikeCount(Unum, Cnum)[0];
+    // for (let i = 0; i < Cnum.length; i++) {
+    //   if (Unum.includes(Cnum[i])) {
+    //     ball++;
+    //   }
+    // }
+
+    // for (let i = 0; i < Cnum.length; i++) {
+    //   if (Unum[i] === Cnum[i]) {
+    //     strike++;
+    //     ball--;
+    //   }
+    // }
+    console.log(`스트라이크: ${strike}, 볼: ${ball}`);
+    ball = 0;
+  }
+  console.log(`3개의 숫자를 모두 맞히셨습니다. 게임 종료.`);
 }
 
 init();
