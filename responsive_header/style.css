@@ -1,0 +1,117 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.nav {
+    height: 6rem;
+    width: 100%;
+    background-color: #30336b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.banner {
+    margin-left: 2rem;
+    font-size: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.buttons {
+    margin: 0 1.5rem;
+    outline-style: none;
+    border-style: none;
+    background: none;
+    font-size: 1.2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    cursor: pointer;
+}
+
+.SNS {
+    margin: 1rem;
+}
+
+.fa {
+    outline-style: none;
+    border-style: none;
+    background: none;
+    color: white;
+}
+
+.fa-bars {
+    display: none;
+    color: #cc8e35
+}
+
+.shirnk-nav {
+    display: none;
+}
+
+@media screen and (max-width: 950px) {
+    .shirnk-nav {
+        display: block;
+    }
+    .nav {
+        display: none;
+    }
+    .nav2.responsive {
+        display: none;
+    }
+
+    .nav1 {
+    height: 6rem;
+    width: 100%;
+    background-color: #30336b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    }
+
+    .nav2 {
+        height: 20rem;
+        background-color: orange;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .buttons {
+        margin: 0.5rem 0;;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .fa-bars {
+        margin-right: 1rem;
+        display: block;
+        font-size: 1.5rem;
+        color: #cc8e35;
+        cursor: pointer;
+    }
+
+    .SNS a{
+        padding: 0.2rem;
+    }
+}
