@@ -1,5 +1,4 @@
 const barBtn = document.querySelector('.fa-bars');
-let toggle = true;
 
 const hideBarsHandler = (e) => {
   const nav2 = document.querySelector('#nav2-id');
