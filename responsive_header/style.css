@@ -1,24 +1,30 @@
+:root {
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-color: white;
+    --head-color: #f1f2f6;
+    --background-color: #30336b;
+    --btn-color: #cc8e35;
+}
+
 html,
 body {
     margin: 0;
     padding: 0;
+    font-family: var(--font-family);
     box-sizing: border-box;
 }
 .nav {
-    height: 6rem;
-    width: 100%;
-    background-color: #30336b;
+    background-color: var(--background-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+
 }
 
 .banner {
     margin-left: 2rem;
     font-size: 2rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color:white;
+    color: var(--font-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,16 +35,20 @@ a {
     text-decoration: none;
 }
 
-.buttons {
+.container {
+    padding: 0;
+    display: flex;
+}
+
+.menues {
     margin: 0 1.5rem;
-    outline-style: none;
-    border-style: none;
-    background: none;
     font-size: 1.2rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: white;
+    text-decoration: none;
+    list-style: none;
+    color: var(--font-color);
     cursor: pointer;
 }
+
 
 .SNS {
     margin: 1rem;
@@ -48,74 +58,52 @@ a {
     outline-style: none;
     border-style: none;
     background: none;
-    color: white;
+    color: var(--font-color);
+    cursor: pointer;
 }
 
 .fa-bars {
     display: none;
-    color: #cc8e35
-}
-
-.shirnk-nav {
-    display: none;
+    color: var(--btn-color);
 }
 
 @media screen and (max-width: 950px) {
-    .shirnk-nav {
-        display: block;
-    }
     .nav {
-        display: none;
-    }
-    .nav2.responsive {
-        display: none;
-    }
-
-    .nav1 {
-    height: 6rem;
-    width: 100%;
-    background-color: #30336b;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    }
-
-    .nav2 {
-        height: 20rem;
-        background-color: #30336b;
-        display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        
     }
+
+    .banner {
+        align-self: flex-start;
+    }
+
     .container {
         width: 100%;
-        display: flex;
+        padding: 0;
         flex-direction: column;
-        justify-content: center;
     }
 
-    .buttons {
+    .menues {
+        width: 100%;
         margin: 0;
-        padding: 0.5rem 0;
-        cursor: pointer;
+        padding: 5px;
+        text-align: center;
     }
 
-    .buttons:hover {
-        background-color: orange;
+    .menues:hover {
+        background-color: var(--btn-color);
+        border-radius: 5px;
     }
 
     .fa-bars {
-        margin-right: 1rem;
+        position: absolute;
+        right: 10px;
+        top: 10px;
         display: block;
-        font-size: 1.5rem;
-        color: #cc8e35;
-        cursor: pointer;
     }
 
-    .SNS a{
-        padding: 0.2rem;
+    .bars-active {
+        display: none;
     }
+
+    
 }
