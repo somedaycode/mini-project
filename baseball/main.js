@@ -1,9 +1,9 @@
 function userNumber() {
   const num = prompt('숫자를 입력해주세요.').split('');
   const userNum = [];
-  for (let i = 0; i < num.length; i++) {
-    userNum[i] = Number(num[i]);
-  }
+  num.forEach((n) => {
+    userNum.push(Number(n));
+  });
   return userNum;
 }
 
@@ -21,11 +21,9 @@ function computerNumber() {
 }
 function ballCount(U, C) {
   let ball = 0;
-  for (let i = 0; i < C.length; i++) {
-    if (U.includes(C[i])) {
-      ball++;
-    }
-  }
+  C.forEach((c) => {
+    if (U.includes(c)) ball++;
+  });
   return ball;
 }
 
@@ -50,18 +48,6 @@ function init() {
     console.log(`사용자의 숫자: ${Unum.join('')}`);
     ball = ballCount(Unum, Cnum) + strikeCount(Unum, Cnum)[1];
     strike = strikeCount(Unum, Cnum)[0];
-    // for (let i = 0; i < Cnum.length; i++) {
-    //   if (Unum.includes(Cnum[i])) {
-    //     ball++;
-    //   }
-    // }
-
-    // for (let i = 0; i < Cnum.length; i++) {
-    //   if (Unum[i] === Cnum[i]) {
-    //     strike++;
-    //     ball--;
-    //   }
-    // }
     console.log(`스트라이크: ${strike}, 볼: ${ball}`);
     ball = 0;
   }
@@ -70,6 +56,7 @@ function init() {
 
 init();
 
+// 다른 방법으로 컴퓨터의 숫자를 정하는법
 // var list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 // var number = [];
 // for (var i = 0; i < 4; i++) {
